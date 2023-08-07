@@ -16,7 +16,7 @@ export const MovieFilters = component$<Props>(({ sortTypeSelected }) => {
   });
 
   return (
-    <div class="mt-4 flex gap-2 items-center justify-center">
+    <div class="mb-6 flex gap-2 items-center justify-center">
       <label>Sort by title:</label>
       <select
         class="bg-inherit p-1 border rounded"

@@ -8,8 +8,8 @@ interface Props {
 
 export const MovieList = component$<Props>(({ movies }) => {
   return (
-    <ul class="grid gap-y-6 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {movies.map((movie: Movie) => (
+    <ul class="grid gap-y-6 my-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {movies.map((movie) => (
         <li class="text-center" key={movie.imdbID}>
           <MovieItem movie={movie} />
         </li>

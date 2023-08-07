@@ -57,13 +57,13 @@ export default component$(() => {
     <>
       <section class="my-4">
         <MovieSearcher handleSubmit={handleSubmit} search={search} />
-        <MovieFilters sortTypeSelected={sortTypeSelected} />
       </section>
 
       {newData.value &&
         !newData.value.errorMessage &&
         !location.isNavigating && (
           <section class="my-4">
+            <MovieFilters sortTypeSelected={sortTypeSelected} />
             <MovieList movies={sortedMovies.value} />
           </section>
         )}
