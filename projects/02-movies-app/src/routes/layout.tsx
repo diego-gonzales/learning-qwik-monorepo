@@ -16,7 +16,7 @@ export default component$(() => {
   return (
     <>
       <header class="text-center">
-        <Link class="text-3xl" href="/">
+        <Link class="text-3xl" href="/movies">
           Movies App
         </Link>
       </header>

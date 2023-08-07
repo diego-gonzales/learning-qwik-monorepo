@@ -1,11 +1,11 @@
-import { type Signal, component$, useSignal, $ } from '@builder.io/qwik';
+import { type Signal, component$, $, useStore } from '@builder.io/qwik';
 import { SortType } from '~/enums/sort-type.enum';
 
 interface Props {
   sortTypeSelected: Signal<SortType>;
 }
 export const MovieFilters = component$<Props>(({ sortTypeSelected }) => {
-  const sortTypes = useSignal<SortType[]>([
+  const sortTypes = useStore<SortType[]>([
     SortType.NONE,
     SortType.ASC,
     SortType.DESC,
@@ -22,7 +22,7 @@ export const MovieFilters = component$<Props>(({ sortTypeSelected }) => {
         class="bg-inherit p-1 border rounded"
         onChange$={(_, element) => handleSelectChange(element)}
       >
-        {sortTypes.value.map((sortType, index) => (
+        {sortTypes.map((sortType, index) => (
           <option
             key={index}
             class="bg-[#222]"
