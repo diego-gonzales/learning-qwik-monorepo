@@ -1,9 +1,12 @@
 import { $, component$, useComputed$, useSignal } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { routeLoader$, useLocation, useNavigate } from '@builder.io/qwik-city';
+import { MovieFilters } from '~/components/movies/movie-filters/movie-filters';
 import { MovieList } from '~/components/movies/movie-list/movie-list';
 import { MovieSearcher } from '~/components/movies/movie-searcher/movie-searcher';
 import { ENV_OMDB_KEY } from '~/const';
+import type { Movie } from '~/interfaces/movie.interface';
+import { SortType } from '~/enums/sort-type.enum';
 import { getMoviesByKeyword } from '~/services/movie.service';
 
 export const useMoviesLoader = routeLoader$(async ({ query, fail, env }) => {
@@ -29,6 +32,18 @@ export default component$(() => {
   const search = useSignal('');
   const nav = useNavigate();
   const location = useLocation();
+  const sortTypeSelected = useSignal<SortType>(SortType.NONE);
+
+  const sortedMovies = useComputed$(() => {
+    if (newData.value.errorMessage) return [];
+
+    const movies: Movie[] = newData.value;
+
+    if (sortTypeSelected.value === SortType.NONE) return movies;
+    if (sortTypeSelected.value === SortType.ASC)
+      return [...movies].sort((a, b) => a.Title.localeCompare(b.Title));
+    else return [...movies].sort((a, b) => b.Title.localeCompare(a.Title));
+  });
 
   const handleSubmit = $(() => {
     const inputValue = search.value.trim();
@@ -42,13 +57,14 @@ export default component$(() => {
     <>
       <section class="my-4">
         <MovieSearcher handleSubmit={handleSubmit} search={search} />
+        <MovieFilters sortTypeSelected={sortTypeSelected} />
       </section>
 
       {newData.value &&
         !newData.value.errorMessage &&
         !location.isNavigating && (
           <section class="my-4">
-            <MovieList movies={newData.value} />
+            <MovieList movies={sortedMovies.value} />
           </section>
         )}
 
