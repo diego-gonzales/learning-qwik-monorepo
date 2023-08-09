@@ -1,7 +1,10 @@
 import { component$ } from '@builder.io/qwik';
-import { CartIcon } from '~/components/icons/cart-icon';
+import { useCart } from '~/hooks/use-cart';
+import { CartIcon } from '~/components/icons/icons';
 
 export const Navbar = component$(() => {
+  const { cart } = useCart();
+
   return (
     <div class="navbar bg-neutral text-neutral-content">
       <div class="flex-1">
@@ -13,7 +16,7 @@ export const Navbar = component$(() => {
           <label tabIndex={0} class="btn btn-ghost btn-circle">
             <div class="indicator">
               <CartIcon />
-              <span class="badge badge-sm indicator-item">8</span>
+              <span class="badge badge-sm indicator-item">{cart.length}</span>
             </div>
           </label>
           <div
