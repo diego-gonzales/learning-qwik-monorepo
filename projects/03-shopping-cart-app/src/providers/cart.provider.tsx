@@ -12,7 +12,7 @@ export const CartProvider = component$(() => {
   const cart = useStore<Product[]>([]);
 
   const addToCart = $((product: Product) => {
-    cart.push(product);
+    cart.unshift(product);
   });
 
   useContextProvider(CART_CTX, {
