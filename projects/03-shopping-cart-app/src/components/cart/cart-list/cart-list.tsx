@@ -1,5 +1,5 @@
 import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
-import { CartIcon } from '~/components/icons/icons';
+import { CartIcon, EmptyCartIcon } from '~/components/icons/icons';
 import { useCart } from '~/hooks/use-cart';
 import { CartItem } from '../cart-item/cart-item';
 
@@ -34,13 +34,23 @@ export const CartList = component$(() => {
       <aside class="drawer-side z-20">
         <label for="my-drawer-4" class="drawer-overlay"></label>
         <section class="p-0 w-72 md:w-80 h-screen bg-neutral text-base-content">
-          <ul class="flex flex-col gap-2 px-2 py-4 max-h-[calc(100vh-120px)] overflow-y-auto">
-            {products.map((product) => (
-              <li key={product.id}>
-                <CartItem product={product} />
-              </li>
-            ))}
-          </ul>
+          {products.length > 0 ? (
+            <ul class="flex flex-col gap-2 px-2 py-4 max-h-[calc(100vh-120px)] overflow-y-auto">
+              {products.map((product) => (
+                <li key={product.id}>
+                  <CartItem product={product} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div class="flex flex-col justify-center items-center h-[calc(100vh-120px)]">
+              <span>
+                <EmptyCartIcon />
+              </span>
+              <span class="text-2xl font-bold">Your cart is empty</span>
+              <span class="text-sm">Add some products to your cart</span>
+            </div>
+          )}
 
           <div class="absolute bottom-0 w-full text-center border-t-[1px] h-[120px] flex flex-col justify-evenly items-center">
             <span class="font-bold text-lg">{products.length} items</span>
