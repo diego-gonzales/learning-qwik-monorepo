@@ -4,7 +4,7 @@ import { useCart } from '~/hooks/use-cart';
 import { CartItem } from '../cart-item/cart-item';
 
 export const CartList = component$(() => {
-  const { cartStore } = useCart();
+  const { products, totalToPay } = useCart();
   const cartIsOpen = useSignal(false);
 
   useVisibleTask$(({ track }) => {
@@ -26,9 +26,7 @@ export const CartList = component$(() => {
         <label for="my-drawer-4" class="btn btn-ghost btn-circle">
           <div class="indicator">
             <CartIcon />
-            <span class="badge badge-sm indicator-item">
-              {cartStore.products.length}
-            </span>
+            <span class="badge badge-sm indicator-item">{products.length}</span>
           </div>
         </label>
       </div>
@@ -37,7 +35,7 @@ export const CartList = component$(() => {
         <label for="my-drawer-4" class="drawer-overlay"></label>
         <section class="p-0 w-72 md:w-80 h-screen bg-neutral text-base-content">
           <ul class="flex flex-col gap-2 px-2 py-4 max-h-[calc(100vh-120px)] overflow-y-auto">
-            {cartStore.products.map((product) => (
+            {products.map((product) => (
               <li key={product.id}>
                 <CartItem product={product} />
               </li>
@@ -45,10 +43,9 @@ export const CartList = component$(() => {
           </ul>
 
           <div class="absolute bottom-0 w-full text-center border-t-[1px] h-[120px] flex flex-col justify-evenly items-center">
-            <span class="font-bold text-lg">
-              {cartStore.products.length} items
-            </span>
-            <span class="text-info">Subtotal: $999</span>
+            <span class="font-bold text-lg">{products.length} items</span>
+            {/* <span class="text-info">Subtotal: $ {totalToPay.value}</span> */}
+            <span class="text-info">Subtotal: $ {totalToPay()}</span>
             <label for="my-drawer-4" class="btn btn-primary btn-xs w-1/2">
               Close
             </label>

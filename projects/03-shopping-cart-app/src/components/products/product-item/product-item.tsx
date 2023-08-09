@@ -8,10 +8,10 @@ interface Props {
 }
 
 export const ProductItem = component$<Props>(({ product }) => {
-  const { cartStore, addToCart, removeFromCart } = useCart();
+  const { products, addToCart, removeFromCart } = useCart();
 
   const productIsInCart = useComputed$(() => {
-    return cartStore.products.some((p) => p.id === product.id);
+    return products.some((p) => p.id === product.id);
   });
 
   return (
