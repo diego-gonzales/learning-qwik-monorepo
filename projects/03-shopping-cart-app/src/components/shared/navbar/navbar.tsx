@@ -1,5 +1,5 @@
 import { component$ } from '@builder.io/qwik';
-import { Cart } from '../cart/cart';
+import { CartList } from '../../cart/cart-list/cart-list';
 
 export const Navbar = component$(() => {
   return (
@@ -10,7 +10,7 @@ export const Navbar = component$(() => {
 
       <div class="flex-none">
         <div class="dropdown dropdown-end">
-          <Cart />
+          <CartList />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
-import { component$ } from '@builder.io/qwik';
-import { AddToCartIcon } from '~/components/icons/icons';
+import { component$, useComputed$ } from '@builder.io/qwik';
+import { AddToCartIcon, RemoveFromCart } from '~/components/icons/icons';
 import { useCart } from '~/hooks/use-cart';
 import { type Product } from '~/interfaces/products.interface';
 
@@ -8,7 +8,11 @@ interface Props {
 }
 
 export const ProductItem = component$<Props>(({ product }) => {
-  const { addToCart } = useCart();
+  const { cartStore, addToCart, removeFromCart } = useCart();
+
+  const productIsInCart = useComputed$(() => {
+    return cartStore.products.some((p) => p.id === product.id);
+  });
 
   return (
     <div class="card bg-neutral shadow-xl">
@@ -27,10 +31,18 @@ export const ProductItem = component$<Props>(({ product }) => {
         </p>
         <div class="card-actions justify-end">
           <button
-            class="btn btn-primary btn-sm"
-            onClick$={() => addToCart(product)}
+            class={[
+              'btn',
+              productIsInCart.value ? 'btn-error' : 'btn-primary',
+              'btn-sm',
+            ]}
+            onClick$={() =>
+              productIsInCart.value
+                ? removeFromCart(product)
+                : addToCart(product)
+            }
           >
-            <AddToCartIcon />
+            {productIsInCart.value ? <RemoveFromCart /> : <AddToCartIcon />}
           </button>
         </div>
       </div>
