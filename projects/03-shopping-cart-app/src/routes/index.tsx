@@ -32,7 +32,12 @@ export default component$(() => {
 
       <main class="max-w-5xl mx-auto px-5">
         <ProductFilters />
-        <ProductList products={filteredProducts.value} />
+
+        {filteredProducts.value.length > 0 ? (
+          <ProductList products={filteredProducts.value} />
+        ) : (
+          <p class="text-center my-5">Product list is empty</p>
+        )}
       </main>
     </>
   );
