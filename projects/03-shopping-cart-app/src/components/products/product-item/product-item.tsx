@@ -31,6 +31,7 @@ export const ProductItem = component$<Props>(({ product }) => {
         </p>
         <div class="card-actions justify-end">
           <button
+            title={productIsInCart.value ? 'Remove from cart' : 'Add to cart'}
             class={[
               'btn',
               productIsInCart.value ? 'btn-error' : 'btn-primary',
