@@ -1,8 +1,9 @@
 import { createContextId } from '@builder.io/qwik';
+import { type SortBy } from '~/consts';
 
 export interface FiltersStore {
   countrySearch: string;
-  sortBy: string;
+  sortBy: SortBy;
   isColoringTable: boolean;
 }
 

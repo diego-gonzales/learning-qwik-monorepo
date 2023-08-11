@@ -4,12 +4,13 @@ import {
   useContextProvider,
   useStore,
 } from '@builder.io/qwik';
-import { FILTERS_CTX } from '~/contexts/filters.context';
+import { SORT_BY } from '~/consts';
+import { FILTERS_CTX, type FiltersStore } from '~/contexts/filters.context';
 
 export const FiltersProvider = component$(() => {
-  const filtersStore = useStore({
+  const filtersStore = useStore<FiltersStore>({
     countrySearch: '',
-    sortBy: '',
+    sortBy: SORT_BY.NONE,
     isColoringTable: false,
   });
 

@@ -1,7 +1,9 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useComputed$ } from '@builder.io/qwik';
 import { routeLoader$, type DocumentHead } from '@builder.io/qwik-city';
 import { UserFilters } from '~/components/users/user-filters/user-filters';
 import { UserTable } from '~/components/users/user-table/user-table';
+import { SORT_BY } from '~/consts';
+import { useFilters } from '~/hooks/use-filters';
 import { getUsers } from '~/services/users.service';
 
 export const useUsersLoader = routeLoader$(async () => {
@@ -14,6 +16,17 @@ export const useUsersLoader = routeLoader$(async () => {
 
 export default component$(() => {
   const users = useUsersLoader();
+  const filtersStore = useFilters();
+
+  const filteredUsers = useComputed$(() => {
+    if (filtersStore.sortBy === SORT_BY.COUNTRY) {
+      return [...users.value].sort((a, b) => {
+        return a.location.country.localeCompare(b.location.country);
+      });
+    } else {
+      return users.value;
+    }
+  });
 
   return (
     <>
@@ -23,7 +36,7 @@ export default component$(() => {
       </header>
 
       <main style={{ width: '100%', overflowX: 'auto' }}>
-        <UserTable users={users.value} />
+        <UserTable users={filteredUsers.value} />
       </main>
     </>
   );
