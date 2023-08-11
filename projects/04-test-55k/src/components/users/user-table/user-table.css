@@ -17,3 +17,7 @@ tbody.coloring tr:nth-child(even) {
 .user_photo {
   border-radius: 50%;
 }
+
+.header-pointer {
+  cursor: pointer;
+}

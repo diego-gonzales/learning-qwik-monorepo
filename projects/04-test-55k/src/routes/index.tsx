@@ -1,10 +1,4 @@
-import {
-  $,
-  component$,
-  useComputed$,
-  useStore,
-  useVisibleTask$,
-} from '@builder.io/qwik';
+import { $, component$, useComputed$, useStore } from '@builder.io/qwik';
 import { routeLoader$, type DocumentHead } from '@builder.io/qwik-city';
 import { UserFilters } from '~/components/users/user-filters/user-filters';
 import { UserTable } from '~/components/users/user-table/user-table';
@@ -30,18 +24,22 @@ export default component$(() => {
   });
 
   const sortedUsers = useComputed$(() => {
-    console.log('sortedUsers');
-    if (filtersStore.sortBy === SORT_BY.COUNTRY) {
-      return [...myStore.users].sort((a, b) => {
-        return a.location.country.localeCompare(b.location.country);
-      });
-    } else {
-      return myStore.users;
-    }
+    if (filtersStore.sortBy === SORT_BY.NONE) return myStore.users;
+
+    const compareFn: Record<string, (user: User) => string> = {
+      [SORT_BY.COUNTRY]: (user) => user.location.country,
+      [SORT_BY.NAME]: (user) => user.name.first,
+      [SORT_BY.LASTNAME]: (user) => user.name.last,
+    };
+
+    const extractProperty = compareFn[filtersStore.sortBy];
+
+    return [...myStore.users].sort((a, b) =>
+      extractProperty(a).localeCompare(extractProperty(b))
+    );
   });
 
   const filteredUsers = useComputed$(() => {
-    console.log('filteredUsers');
     if (filtersStore.countrySearch.trim().length === 0)
       return sortedUsers.value;
 

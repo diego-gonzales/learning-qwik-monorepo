@@ -2,6 +2,7 @@ import { type QRL, component$, useStylesScoped$ } from '@builder.io/qwik';
 import styles from './user-table.css?inline';
 import { type User } from '~/interfaces/users.inteface';
 import { useFilters } from '~/hooks/use-filters';
+import { SORT_BY } from '~/consts';
 
 interface UserTableProps {
   users: User[];
@@ -17,9 +18,30 @@ export const UserTable = component$<UserTableProps>(({ users, removeUser }) => {
       <thead>
         <tr>
           <th>Photo</th>
-          <th>Name</th>
-          <th>Lastname</th>
-          <th>Country</th>
+          <th
+            class="header-pointer"
+            onClick$={() => {
+              filtersStore.sortBy = SORT_BY.NAME;
+            }}
+          >
+            Name
+          </th>
+          <th
+            class="header-pointer"
+            onClick$={() => {
+              filtersStore.sortBy = SORT_BY.LASTNAME;
+            }}
+          >
+            Lastname
+          </th>
+          <th
+            class="header-pointer"
+            onClick$={() => {
+              filtersStore.sortBy = SORT_BY.COUNTRY;
+            }}
+          >
+            Country
+          </th>
           <th>Actions</th>
         </tr>
       </thead>
