@@ -1,9 +1,13 @@
-import { $, component$, useStylesScoped$ } from '@builder.io/qwik';
+import { $, type QRL, component$, useStylesScoped$ } from '@builder.io/qwik';
 import styles from './users-filters.css?inline';
 import { useFilters } from '~/hooks/use-filters';
-import { type SortBy, SORT_BY } from '~/consts';
+import { SORT_BY } from '~/consts';
 
-export const UserFilters = component$(() => {
+interface UserFiltersProps {
+  restoreUsers: QRL<() => void>;
+}
+
+export const UserFilters = component$<UserFiltersProps>(({ restoreUsers }) => {
   useStylesScoped$(styles);
   const filtersStore = useFilters();
 
@@ -23,12 +27,17 @@ export const UserFilters = component$(() => {
       >
         {filtersStore.isColoringTable ? 'Not coloring' : 'Coloring'}
       </button>
+
       <button class="button" onClick$={() => toggleSortByCountry()}>
         {filtersStore.sortBy !== SORT_BY.COUNTRY
           ? 'Sort by country'
           : 'Not sort by country'}
       </button>
-      <button class="button">Reset state</button>
+
+      <button class="button" onClick$={restoreUsers}>
+        Reset state
+      </button>
+
       <input class="input" type="text" placeholder="Filter by country" />
     </section>
   );

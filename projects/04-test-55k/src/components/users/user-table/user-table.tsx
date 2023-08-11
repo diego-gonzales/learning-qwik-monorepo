@@ -1,13 +1,14 @@
-import { component$, useStylesScoped$ } from '@builder.io/qwik';
+import { type QRL, component$, useStylesScoped$ } from '@builder.io/qwik';
 import styles from './user-table.css?inline';
 import { type User } from '~/interfaces/users.inteface';
 import { useFilters } from '~/hooks/use-filters';
 
 interface UserTableProps {
   users: User[];
+  removeUser: QRL<(userId: string) => void>;
 }
 
-export const UserTable = component$<UserTableProps>(({ users }) => {
+export const UserTable = component$<UserTableProps>(({ users, removeUser }) => {
   useStylesScoped$(styles);
   const filtersStore = useFilters();
 
@@ -27,6 +28,7 @@ export const UserTable = component$<UserTableProps>(({ users }) => {
           <tr key={user.login.uuid}>
             <td>
               <img
+                class="user_photo"
                 src={user.picture.thumbnail}
                 alt={`Image from user ${user.name.first}`}
                 width={45}
@@ -37,7 +39,12 @@ export const UserTable = component$<UserTableProps>(({ users }) => {
             <td>{user.name.last}</td>
             <td>{user.location.country}</td>
             <td>
-              <button class="button">Delete</button>
+              <button
+                class="button"
+                onClick$={() => removeUser(user.login.uuid)}
+              >
+                Delete
+              </button>
             </td>
           </tr>
         ))}

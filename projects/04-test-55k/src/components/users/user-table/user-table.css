@@ -13,3 +13,7 @@ tbody.coloring tr:nth-child(even) {
   background-color: #574949;
   transition: all ease-in 0.2s;
 }
+
+.user_photo {
+  border-radius: 50%;
+}
