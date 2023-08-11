@@ -38,7 +38,15 @@ export const UserFilters = component$<UserFiltersProps>(({ restoreUsers }) => {
         Reset state
       </button>
 
-      <input class="input" type="text" placeholder="Filter by country" />
+      <input
+        class="input"
+        type="text"
+        placeholder="Filter by country"
+        value={filtersStore.countrySearch}
+        onInput$={(_, element) => {
+          filtersStore.countrySearch = element.value;
+        }}
+      />
     </section>
   );
 });

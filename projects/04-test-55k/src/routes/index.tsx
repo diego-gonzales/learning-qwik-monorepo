@@ -1,4 +1,10 @@
-import { $, component$, useComputed$, useStore } from '@builder.io/qwik';
+import {
+  $,
+  component$,
+  useComputed$,
+  useStore,
+  useVisibleTask$,
+} from '@builder.io/qwik';
 import { routeLoader$, type DocumentHead } from '@builder.io/qwik-city';
 import { UserFilters } from '~/components/users/user-filters/user-filters';
 import { UserTable } from '~/components/users/user-table/user-table';
@@ -24,6 +30,7 @@ export default component$(() => {
   });
 
   const sortedUsers = useComputed$(() => {
+    console.log('sortedUsers');
     if (filtersStore.sortBy === SORT_BY.COUNTRY) {
       return [...myStore.users].sort((a, b) => {
         return a.location.country.localeCompare(b.location.country);
@@ -31,6 +38,16 @@ export default component$(() => {
     } else {
       return myStore.users;
     }
+  });
+
+  const filteredUsers = useComputed$(() => {
+    console.log('filteredUsers');
+    if (filtersStore.countrySearch.trim().length === 0)
+      return sortedUsers.value;
+
+    return sortedUsers.value.filter((user) =>
+      user.location.country.toLowerCase().includes(filtersStore.countrySearch)
+    );
   });
 
   const removeUser = $((userId: string) => {
@@ -50,7 +67,7 @@ export default component$(() => {
       </header>
 
       <main style={{ width: '100%', overflowX: 'auto' }}>
-        <UserTable users={sortedUsers.value} removeUser={removeUser} />
+        <UserTable users={filteredUsers.value} removeUser={removeUser} />
       </main>
     </>
   );
