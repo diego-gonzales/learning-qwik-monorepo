@@ -1,6 +1,7 @@
 import { component$, useStylesScoped$ } from '@builder.io/qwik';
 import styles from './user-table.css?inline';
 import { type User } from '~/interfaces/users.inteface';
+import { useFilters } from '~/hooks/use-filters';
 
 interface UserTableProps {
   users: User[];
@@ -8,6 +9,7 @@ interface UserTableProps {
 
 export const UserTable = component$<UserTableProps>(({ users }) => {
   useStylesScoped$(styles);
+  const filtersStore = useFilters();
 
   return (
     <table class="table">
@@ -20,7 +22,7 @@ export const UserTable = component$<UserTableProps>(({ users }) => {
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class={filtersStore.isColoringTable ? 'coloring' : ''}>
         {users.map((user) => (
           <tr key={user.login.uuid}>
             <td>

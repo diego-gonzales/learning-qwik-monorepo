@@ -3,3 +3,13 @@
   text-align: center;
   margin: 10px 0;
 }
+
+tbody.coloring tr:nth-child(odd) {
+  background-color: #302f2f;
+  transition: all ease-in 0.2s;
+}
+
+tbody.coloring tr:nth-child(even) {
+  background-color: #574949;
+  transition: all ease-in 0.2s;
+}
