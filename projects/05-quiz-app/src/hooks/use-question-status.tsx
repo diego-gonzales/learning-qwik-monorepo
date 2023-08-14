@@ -1,7 +1,7 @@
 import { useComputed$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
 import { useQuestions } from './use-questions';
 
-export const useQuestionStatus = () => {
+export const useQuestionsStatus = () => {
   const { questions } = useQuestions();
   const correctAnswers = useSignal(0);
   const incorrectAnswers = useSignal(0);

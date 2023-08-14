@@ -1,1 +1,1 @@
-export const QUESTIONS_LIMIT = 10;
+export const QUESTIONS_LIMIT = 5;

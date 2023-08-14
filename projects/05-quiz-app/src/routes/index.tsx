@@ -3,10 +3,13 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import { JavascriptIcon } from '~/components/icons/icons';
 import { Game } from '~/components/quiz/game/game';
 import { Start } from '~/components/quiz/start/start';
+import { Results } from '~/components/results/results';
+import { useQuestionsStatus } from '~/hooks/use-question-status';
 import { useQuestions } from '~/hooks/use-questions';
 
 export default component$(() => {
   const { questions } = useQuestions();
+  const { unansweredQuestions } = useQuestionsStatus();
 
   return (
     <>
@@ -16,7 +19,12 @@ export default component$(() => {
       </header>
       <main class="mt-5 w-full max-w-sm">
         {questions.value.length === 0 && <Start />}
-        {questions.value.length > 0 && <Game />}
+        {questions.value.length > 0 && unansweredQuestions.value > 0 && (
+          <Game />
+        )}
+        {questions.value.length > 0 && unansweredQuestions.value === 0 && (
+          <Results />
+        )}
       </main>
     </>
   );

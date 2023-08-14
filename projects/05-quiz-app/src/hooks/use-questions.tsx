@@ -36,6 +36,11 @@ export const useQuestions = () => {
     questionsStore.questions = newQuestions;
   });
 
+  const resetGame = $(() => {
+    questionsStore.questions = [];
+    questionsStore.currentQuestionNumber = 0;
+  });
+
   return {
     questions: useComputed$(() => questionsStore.questions),
     currentQuestionNumber: useComputed$(
@@ -48,5 +53,6 @@ export const useQuestions = () => {
     nextQuestionNumber,
     previousQuestionNumber,
     selectAnswer,
+    resetGame,
   };
 };
