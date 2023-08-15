@@ -2,6 +2,7 @@ import { $, useComputed$, useContext } from '@builder.io/qwik';
 import { QUESTIONS_LIMIT } from '~/consts';
 import { QUESTIONS_CTX } from '~/contexts/questions.context';
 import { getQuestions } from '~/services/questions.service';
+import confetti from 'canvas-confetti';
 
 export const useQuestions = () => {
   const questionsStore = useContext(QUESTIONS_CTX);
@@ -26,6 +27,8 @@ export const useQuestions = () => {
     const questionIndex = newQuestions.findIndex((q) => q.id === questionId);
     const questionInfo = newQuestions[questionIndex];
     const isCorrectAnswer = questionInfo.correctAnswer === userAnswerIndex;
+
+    if (isCorrectAnswer) confetti({ ticks: 50 });
 
     newQuestions[questionIndex] = {
       ...questionInfo,

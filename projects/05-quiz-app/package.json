@@ -23,6 +23,7 @@
   "devDependencies": {
     "@builder.io/qwik": "^1.2.6",
     "@builder.io/qwik-city": "^1.2.6",
+    "@types/canvas-confetti": "^1.6.0",
     "@types/eslint": "8.40.2",
     "@types/node": "^20.4.0",
     "@typescript-eslint/eslint-plugin": "5.61.0",
@@ -38,5 +39,8 @@
     "undici": "5.22.1",
     "vite": "4.4.0",
     "vite-tsconfig-paths": "4.2.0"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.6.0"
   }
 }

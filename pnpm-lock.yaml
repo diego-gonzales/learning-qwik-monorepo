@@ -215,6 +215,10 @@ importers:
   projects/04-test-55k/server: {}
 
   projects/05-quiz-app:
+    dependencies:
+      canvas-confetti:
+        specifier: ^1.6.0
+        version: 1.6.0
     devDependencies:
       '@builder.io/qwik':
         specifier: ^1.2.6
@@ -222,6 +226,9 @@ importers:
       '@builder.io/qwik-city':
         specifier: ^1.2.6
         version: 1.2.6
+      '@types/canvas-confetti':
+        specifier: ^1.6.0
+        version: 1.6.0
       '@types/eslint':
         specifier: 8.40.2
         version: 8.40.2
@@ -663,6 +670,10 @@ packages:
       '@types/estree': 1.0.1
     dev: true
 
+  /@types/canvas-confetti@1.6.0:
+    resolution: {integrity: sha512-Yq6rIccwcco0TLD5SMUrIM7Fk7Fe/C0jmNRxJJCLtAF6gebDkPuUjK5EHedxecm69Pi/aA+It39Ux4OHmFhjRw==}
+    dev: true
+
   /@types/debug@4.1.8:
     resolution: {integrity: sha512-/vPO1EPOs306Cvhwv7KfVfYvOJqA/S/AXjaHQiJboCZzcNDb+TIJFN9/2C9DZ//ijSKWioNyUxD792QmDJ+HKQ==}
     dependencies:
@@ -1070,6 +1081,10 @@ packages:
   /caniuse-lite@1.0.30001519:
     resolution: {integrity: sha512-0QHgqR+Jv4bxHMp8kZ1Kn8CH55OikjKJ6JmKkZYP1F3D7w+lnFXF70nG5eNfsZS89jadi5Ywy5UCSKLAglIRkg==}
     dev: true
+
+  /canvas-confetti@1.6.0:
+    resolution: {integrity: sha512-ej+w/m8Jzpv9Z7W7uJZer14Ke8P2ogsjg4ZMGIuq4iqUOqY2Jq8BNW42iGmNfRwREaaEfFIczLuZZiEVSYNHAA==}
+    dev: false
 
   /ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
