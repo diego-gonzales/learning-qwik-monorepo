@@ -1,7 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import { useQuestions } from '~/hooks/use-questions';
 
-export const Reset = component$(() => {
+export const ButtonReset = component$(() => {
   const { resetGame } = useQuestions();
 
   return (

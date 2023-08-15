@@ -2,7 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import { QUESTIONS_LIMIT } from '~/consts';
 import { useQuestions } from '~/hooks/use-questions';
 
-export const Start = component$(() => {
+export const ButtonStart = component$(() => {
   const { fetchQuestions } = useQuestions();
 
   return (

@@ -1,9 +1,9 @@
 import { component$ } from '@builder.io/qwik';
-import { GameQuestions } from '~/components/game-questions/game-questions';
-import { GameStatus } from '~/components/game-status/game-status';
 import { LeftArrowIcon, RightArrowIcon } from '~/components/icons/icons';
 import { QUESTIONS_LIMIT } from '~/consts';
 import { useQuestions } from '~/hooks/use-questions';
+import { GameQuestions } from '../game-questions/game-questions';
+import { GameStatus } from '../game-status/game-status';
 
 export const Game = component$(() => {
   const { nextQuestionNumber, previousQuestionNumber, currentQuestionNumber } =

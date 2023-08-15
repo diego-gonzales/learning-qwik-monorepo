@@ -1,8 +1,8 @@
 import { component$ } from '@builder.io/qwik';
-import { Reset } from '../reset/reset';
+import { ButtonReset } from '../button-reset/button-reset';
 import { useQuestionsStatus } from '~/hooks/use-question-status';
 
-export const Results = component$(() => {
+export const GameResults = component$(() => {
   const { correctAnswers, incorrectAnswers } = useQuestionsStatus();
   return (
     <div class="text-center">
@@ -13,7 +13,7 @@ export const Results = component$(() => {
         <p>❌ {incorrectAnswers.value} incorrectas</p>
       </div>
 
-      <Reset />
+      <ButtonReset />
     </div>
   );
 });

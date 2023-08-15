@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { useQuestionsStatus } from '~/hooks/use-question-status';
-import { Reset } from '../reset/reset';
+import { ButtonReset } from '../button-reset/button-reset';
 
 export const GameStatus = component$(() => {
   const { correctAnswers, incorrectAnswers, unansweredQuestions } =
@@ -14,7 +14,7 @@ export const GameStatus = component$(() => {
         <span>❓{unansweredQuestions.value} unanswered</span>
       </p>
 
-      <Reset />
+      <ButtonReset />
     </>
   );
 });
