@@ -7,12 +7,18 @@ import {
   zod$,
   z,
 } from '@builder.io/qwik-city';
+import { TOKEN_LOCAL_STORAGE_KEY } from '~/constants';
 import { login } from '~/services/auth.service';
 
 export const useLoginAction = routeAction$(
-  async (data, { redirect, fail }) => {
+  async (data, { redirect, fail, cookie }) => {
     try {
-      await login(data);
+      const resp = await login(data);
+      cookie.set(TOKEN_LOCAL_STORAGE_KEY, resp.access_token, {
+        secure: true,
+        path: '/',
+      });
+
       redirect(302, '/dashboard');
     } catch (error: any) {
       return fail(401, { error });
@@ -20,7 +26,7 @@ export const useLoginAction = routeAction$(
   },
   zod$({
     email: z.string().email(),
-    password: z.string().min(6),
+    password: z.string().min(6, 'Password must be at least 6 characters'),
   })
 );
 
