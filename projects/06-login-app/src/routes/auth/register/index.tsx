@@ -1,32 +1,111 @@
-import { component$ } from '@builder.io/qwik';
+import { $, component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
-import { Form, Link } from '@builder.io/qwik-city';
+import { Link, routeLoader$, z } from '@builder.io/qwik-city';
+import {
+  useForm,
+  type InitialValues,
+  zodForm$,
+  type SubmitHandler,
+  formAction$,
+} from '@modular-forms/qwik';
+
+const registerSchema = z.object({
+  name: z.string().min(1, 'Please enter your name'),
+  email: z
+    .string()
+    .min(1, 'Please enter your email')
+    .email('Please enter a valid email'),
+  password: z
+    .string()
+    .min(1, 'Please enter your password')
+    .min(6, 'Password must be at least 6 characters'),
+});
+
+type RegisterForm = z.infer<typeof registerSchema>;
+
+export const useRegisterFormLoader = routeLoader$<InitialValues<RegisterForm>>(
+  () => {
+    return {
+      name: '',
+      email: '',
+      password: '',
+    };
+  }
+);
+
+export const useFormAction = formAction$<RegisterForm>((values) => {
+  // Runs on server
+  console.log(values);
+}, zodForm$(registerSchema));
 
 export default component$(() => {
+  const [, { Form, Field }] = useForm<RegisterForm>({
+    loader: useRegisterFormLoader(),
+    action: useFormAction(),
+    validate: zodForm$(registerSchema),
+  });
+
+  const handleSubmit = $<SubmitHandler<RegisterForm>>((values, event) => {
+    // Runs on client
+    console.log(values);
+  });
+
   return (
-    <Form class="login100-form" autoComplete="off">
+    <Form class="login100-form" autoComplete="off" onSubmit$={handleSubmit}>
       <span class="login100-form-title p-b-49">Register</span>
 
       <div class="wrap-input100 m-b-23">
         <span class="label-input100">Nombre</span>
-        <input class="input100" type="text" placeholder="Nombre" />
-        <span class="focus-input100"></span>
+        <Field name="name">
+          {(field, props) => (
+            <>
+              <input
+                class="input100"
+                placeholder="Nombre"
+                {...props}
+                type="text"
+                value={field.value}
+              />
+              {field.error && <span class="focus-input100">{field.error}</span>}
+            </>
+          )}
+        </Field>
       </div>
 
       <div class="wrap-input100 m-b-23">
         <span class="label-input100">Correo</span>
-        <input class="input100" type="email" placeholder="Correo electrónico" />
-        <span class="focus-input100"></span>
+        <Field name="email">
+          {(field, props) => (
+            <>
+              <input
+                class="input100"
+                placeholder="Correo electrónico"
+                {...props}
+                type="email"
+                value={field.value}
+              />
+              {field.error && <span class="focus-input100">{field.error}</span>}
+            </>
+          )}
+        </Field>
       </div>
 
       <div class="wrap-input100">
         <span class="label-input100">Contraseña</span>
-        <input
-          class="input100"
-          type="password"
-          placeholder="Ingrese su contraseña"
-        />
-        <span class="focus-input100"></span>
+        <Field name="password">
+          {(field, props) => (
+            <>
+              <input
+                class="input100"
+                placeholder="Ingrese su contraseña"
+                {...props}
+                type="password"
+                value={field.value}
+              />
+              {field.error && <span class="focus-input100">{field.error}</span>}
+            </>
+          )}
+        </Field>
       </div>
 
       <div class="text-right p-t-8 p-b-31"></div>
