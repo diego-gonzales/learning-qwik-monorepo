@@ -36,3 +36,9 @@ export const validateToken = async (token: string) => {
   const data = (await response.json()) as LoginResponse;
   return data;
 };
+
+export const logout = () => {
+  // clear token and user from cookies
+  document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+};

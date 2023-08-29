@@ -1,6 +1,10 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
+.is-active {
+  color: #a64bf4;
+}
+
 @font-face {
   font-family: Poppins-Regular;
   src: url('/fonts/poppins/Poppins-Regular.ttf');

@@ -1,5 +1,6 @@
 import { Slot, component$ } from '@builder.io/qwik';
 import { type RequestHandler } from '@builder.io/qwik-city';
+import { Navbar } from '~/components/shared/navbar';
 import { TOKEN_LOCAL_STORAGE_KEY, USER_LOCAL_STORAGE_KEY } from '~/constants';
 import {
   getDataFromCookies,
@@ -32,6 +33,7 @@ export default component$(() => {
   return (
     <div>
       <h1>Back-Office Layout</h1>
+      <Navbar />
       <Slot />
     </div>
   );
