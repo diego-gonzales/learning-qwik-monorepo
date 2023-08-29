@@ -7,17 +7,16 @@ import {
   zod$,
   z,
 } from '@builder.io/qwik-city';
-import { TOKEN_LOCAL_STORAGE_KEY } from '~/constants';
+import { TOKEN_LOCAL_STORAGE_KEY, USER_LOCAL_STORAGE_KEY } from '~/constants';
+import { saveDataInCookies } from '~/helpers/cookies.helper';
 import { login } from '~/services/auth.service';
 
 export const useLoginAction = routeAction$(
   async (data, { redirect, fail, cookie }) => {
     try {
-      const resp = await login(data);
-      cookie.set(TOKEN_LOCAL_STORAGE_KEY, resp.access_token, {
-        secure: true,
-        path: '/',
-      });
+      const { access_token, user } = await login(data);
+      saveDataInCookies(cookie, TOKEN_LOCAL_STORAGE_KEY, access_token);
+      saveDataInCookies(cookie, USER_LOCAL_STORAGE_KEY, user);
 
       redirect(302, '/dashboard');
     } catch (error: any) {
