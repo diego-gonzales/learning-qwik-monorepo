@@ -7,7 +7,11 @@ import {
   zodForm$,
   type SubmitHandler,
   formAction$,
+  FormError,
 } from '@modular-forms/qwik';
+import { TOKEN_LOCAL_STORAGE_KEY, USER_LOCAL_STORAGE_KEY } from '~/constants';
+import { saveDataInCookies } from '~/helpers/cookies.helper';
+import { register } from '~/services/auth.service';
 
 const registerSchema = z.object({
   name: z.string().min(1, 'Please enter your name'),
@@ -26,20 +30,33 @@ type RegisterForm = z.infer<typeof registerSchema>;
 export const useRegisterFormLoader = routeLoader$<InitialValues<RegisterForm>>(
   () => {
     return {
-      name: '',
-      email: '',
+      name: 'diego',
+      email: 'diego@email.com',
       password: '',
     };
   }
 );
 
-export const useFormAction = formAction$<RegisterForm>((values) => {
-  // Runs on server
-  console.log(values);
-}, zodForm$(registerSchema));
+export const useFormAction = formAction$<RegisterForm>(
+  async (values, { cookie, redirect, env }) => {
+    // Runs on server
+    console.log(values);
+    try {
+      const { access_token, user } = await register(values, env);
+
+      saveDataInCookies(cookie, TOKEN_LOCAL_STORAGE_KEY, access_token);
+      saveDataInCookies(cookie, USER_LOCAL_STORAGE_KEY, user);
+
+      redirect(302, '/dashboard');
+    } catch (error: any) {
+      throw new FormError<RegisterForm>(error);
+    }
+  },
+  zodForm$(registerSchema)
+);
 
 export default component$(() => {
-  const [, { Form, Field }] = useForm<RegisterForm>({
+  const [registerForm, { Form, Field }] = useForm<RegisterForm>({
     loader: useRegisterFormLoader(),
     action: useFormAction(),
     validate: zodForm$(registerSchema),
@@ -48,6 +65,7 @@ export default component$(() => {
   const handleSubmit = $<SubmitHandler<RegisterForm>>((values, event) => {
     // Runs on client
     console.log(values);
+    console.log(event);
   });
 
   return (
@@ -118,6 +136,10 @@ export default component$(() => {
           </button>
         </div>
       </div>
+
+      {registerForm.response.message && (
+        <div>{registerForm.response.message}</div>
+      )}
 
       <div class="flex-col-c p-t-60">
         <span class="txt1 p-b-17">¿Ya tienes cuenta?</span>

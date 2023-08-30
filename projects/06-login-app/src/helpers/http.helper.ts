@@ -34,20 +34,21 @@ export const helpHttp = () => {
       .catch((err) => err);
   };
 
-  const get = (url: string, options: RequestInit = {}) =>
-    customFetch(url, options);
+  const get = (url: string, options: any = {}) => {
+    return customFetch(url, options);
+  };
 
-  const post = (url: string, options: RequestInit = {}) => {
+  const post = (url: string, options: any = {}) => {
     options.method = 'POST';
     return customFetch(url, options);
   };
 
-  const put = (url: string, options: RequestInit = {}) => {
+  const put = (url: string, options: any = {}) => {
     options.method = 'PUT';
     return customFetch(url, options);
   };
 
-  const del = (url: string, options: RequestInit = {}) => {
+  const del = (url: string, options: any = {}) => {
     options.method = 'DELETE';
     return customFetch(url, options);
   };
