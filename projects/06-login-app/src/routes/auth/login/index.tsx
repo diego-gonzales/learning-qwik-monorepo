@@ -12,9 +12,9 @@ import { saveDataInCookies } from '~/helpers/cookies.helper';
 import { login } from '~/services/auth.service';
 
 export const useLoginAction = routeAction$(
-  async (data, { redirect, fail, cookie }) => {
+  async (data, { redirect, fail, cookie, env }) => {
     try {
-      const { access_token, user } = await login(data);
+      const { access_token, user } = await login(data, env);
       saveDataInCookies(cookie, TOKEN_LOCAL_STORAGE_KEY, access_token);
       saveDataInCookies(cookie, USER_LOCAL_STORAGE_KEY, user);
 

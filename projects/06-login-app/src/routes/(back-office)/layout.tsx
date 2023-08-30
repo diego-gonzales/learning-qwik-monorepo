@@ -1,6 +1,6 @@
 import { Slot, component$ } from '@builder.io/qwik';
 import { type RequestHandler } from '@builder.io/qwik-city';
-import { Navbar } from '~/components/shared/navbar';
+import { Navbar } from '~/components/shared/navbar/navbar';
 import { TOKEN_LOCAL_STORAGE_KEY, USER_LOCAL_STORAGE_KEY } from '~/constants';
 import {
   getDataFromCookies,
@@ -11,6 +11,7 @@ import { validateToken } from '~/services/auth.service';
 export const onGet: RequestHandler = async ({
   cookie,
   redirect,
+  env,
   sharedMap,
 }) => {
   const token = getDataFromCookies(cookie, TOKEN_LOCAL_STORAGE_KEY);
@@ -20,7 +21,7 @@ export const onGet: RequestHandler = async ({
   if (user) sharedMap.set(USER_LOCAL_STORAGE_KEY, user);
 
   try {
-    const { access_token } = await validateToken(token);
+    const { access_token } = await validateToken(token, env);
     // Se actualiza el token en las cookies
     saveDataInCookies(cookie, TOKEN_LOCAL_STORAGE_KEY, access_token);
   } catch (error) {
