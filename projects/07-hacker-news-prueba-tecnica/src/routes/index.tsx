@@ -1,25 +1,33 @@
-import { component$ } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
+import type { DocumentHead } from '@builder.io/qwik-city';
+import { Story } from '~/components/story/story';
+import { getTopStories } from '~/services/hacker-news.service';
 
 export default component$(() => {
+  const storyIds = useSignal<number[]>([]);
+
+  useVisibleTask$(async () => {
+    const data = await getTopStories(1, 10);
+    storyIds.value = data;
+  });
+
   return (
-    <>
-      <h1>Hi 👋</h1>
-      <p>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </p>
-    </>
+    <ul>
+      {storyIds.value.map((storyId, index) => (
+        <li key={storyId}>
+          <Story storyId={storyId} storyIndex={index} />
+        </li>
+      ))}
+    </ul>
   );
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
+  title: 'Home',
   meta: [
     {
-      name: "description",
-      content: "Qwik site description",
+      name: 'description',
+      content: 'Qwik site description',
     },
   ],
 };
