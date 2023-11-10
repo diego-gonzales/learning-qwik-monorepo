@@ -58,17 +58,17 @@ export default component$(() => {
 
         <section>
           <h2>Item list</h2>
-          <ol>
-            {items.value.length === 0 ? (
-              <p>The list is empty</p>
-            ) : (
-              items.value.map((item) => (
+          {items.value.length === 0 ? (
+            <p>The list is empty</p>
+          ) : (
+            <ol>
+              {items.value.map((item) => (
                 <li key={item.id} role="button" onClick$={removeItem(item.id)}>
                   <p>{item.text}</p>
                 </li>
-              ))
-            )}
-          </ol>
+              ))}
+            </ol>
+          )}
         </section>
       </main>
     </>
