@@ -1,15 +1,20 @@
 import { component$ } from "@builder.io/qwik";
 import { Form, routeAction$, z, zod$ } from "@builder.io/qwik-city";
+import { TOKEN_KEY, USER_KEY } from "~/constants";
 import { login } from "~/services/auth.service";
 
 export const useLogin = routeAction$(
-  async (credentials, { fail }) => {
+  async (credentials, { fail, cookie, redirect }) => {
     try {
-      const result = await login(credentials);
-      return result;
+      const { access_token, user } = await login(credentials);
+
+      cookie.set(TOKEN_KEY, access_token, { secure: true, path: "/" });
+      cookie.set(USER_KEY, user, { secure: true, path: "/" });
+
+      redirect(302, "/");
     } catch (error: any) {
       return fail(error.statusCode, {
-        msg: error.message,
+        myErrorMsg: error.message,
       });
     }
   },
@@ -53,10 +58,7 @@ export default component$(() => {
           Log in
         </button>
 
-        {loginAction.value?.msg && <p>{loginAction.value.msg}</p>}
-        {loginAction.value?.user && (
-          <p>{JSON.stringify(loginAction.value.user, null, 2)}</p>
-        )}
+        {loginAction.value?.myErrorMsg && <p>{loginAction.value.myErrorMsg}</p>}
       </Form>
     </div>
   );
