@@ -31,4 +31,8 @@ body {
   .qwik-avatar {
     @apply block cursor-pointer rounded-full border-2 border-gray-300 bg-slate-700 object-cover hover:contrast-50;
   }
+
+  .qwik-text-error {
+    @apply text-xs text-red-500;
+  }
 }
