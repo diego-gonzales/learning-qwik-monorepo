@@ -1,5 +1,8 @@
 import { Slot, component$ } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
+import { FooterPlayer } from "~/components/shared/footer-player/footer-player";
+import { Header } from "~/components/shared/header/header";
+import { Sidebar } from "~/components/shared/sidebar/sidebar";
 import { DATA_KEY, USER_KEY } from "~/constants";
 import { type LoginResponse } from "~/interfaces/login.interface";
 import { verifyToken } from "~/services/auth.service";
@@ -25,5 +28,16 @@ export const onRequest: RequestHandler = async ({
 };
 
 export default component$(() => {
-  return <Slot />;
+  return (
+    <div class={"flex h-[100vh]"}>
+      <div class="min-w-[256px]">
+        <Sidebar />
+      </div>
+      <div class={"grid w-full grid-cols-1 grid-rows-[76px_1fr]"}>
+        <Header />
+        <Slot />
+      </div>
+      <FooterPlayer />
+    </div>
+  );
 });
