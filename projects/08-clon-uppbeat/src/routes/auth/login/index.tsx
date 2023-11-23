@@ -1,4 +1,5 @@
 import { component$ } from "@builder.io/qwik";
+import type { DocumentHead } from "@builder.io/qwik-city";
 import { Form, routeAction$, z, zod$ } from "@builder.io/qwik-city";
 import { DATA_KEY } from "~/constants";
 import { login } from "~/services/auth.service";
@@ -60,3 +61,13 @@ export default component$(() => {
     </div>
   );
 });
+
+export const head: DocumentHead = {
+  title: "Uppbeat Clon Login",
+  meta: [
+    {
+      name: "description",
+      content: "Login to Uppbeat Clon",
+    },
+  ],
+};
