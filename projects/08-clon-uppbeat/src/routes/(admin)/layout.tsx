@@ -35,7 +35,9 @@ export default component$(() => {
       </div>
       <div class="grid w-full grid-cols-1 grid-rows-[76px_1fr]">
         <Header />
-        <Slot />
+        <main class="p-12">
+          <Slot />
+        </main>
       </div>
       <FooterPlayer />
     </div>
