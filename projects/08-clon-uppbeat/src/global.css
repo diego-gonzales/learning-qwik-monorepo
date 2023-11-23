@@ -17,11 +17,11 @@ body {
   }
 
   .qwik-button-primary {
-    @apply flex h-[40px] w-max min-w-[50px] content-center items-center justify-center gap-1 rounded-3xl bg-pink-600 p-2 px-3 text-sm text-white hover:bg-pink-800;
+    @apply flex h-[40px] w-max min-w-[50px] content-center items-center justify-center gap-1 rounded-xl border border-gray-100 bg-pink-500 p-2 px-3 text-sm text-white hover:bg-pink-600;
   }
 
   .qwik-button-default {
-    @apply flex h-[40px] w-max content-center items-center justify-center gap-1 rounded-3xl bg-gray-200 p-2 px-3 text-sm text-gray-900 hover:bg-gray-800 hover:text-white;
+    @apply flex h-[40px] w-max content-center items-center justify-center gap-1 rounded-xl border border-gray-100 bg-gray-100 p-2 px-3 text-sm text-gray-900 hover:bg-gray-200;
   }
 
   .qwik-input-src {
