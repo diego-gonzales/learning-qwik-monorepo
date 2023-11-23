@@ -29,11 +29,11 @@ export const onRequest: RequestHandler = async ({
 
 export default component$(() => {
   return (
-    <div class={"flex h-[100vh]"}>
+    <div class="flex h-[100vh]">
       <div class="min-w-[256px]">
         <Sidebar />
       </div>
-      <div class={"grid w-full grid-cols-1 grid-rows-[76px_1fr]"}>
+      <div class="grid w-full grid-cols-1 grid-rows-[76px_1fr]">
         <Header />
         <Slot />
       </div>
