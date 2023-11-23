@@ -1,16 +1,13 @@
 import { component$ } from "@builder.io/qwik";
 import { Form, routeAction$, z, zod$ } from "@builder.io/qwik-city";
-import { TOKEN_KEY, USER_KEY } from "~/constants";
+import { DATA_KEY } from "~/constants";
 import { login } from "~/services/auth.service";
 
 export const useLogin = routeAction$(
   async (credentials, { fail, cookie, redirect }) => {
     try {
-      const { access_token, user } = await login(credentials);
-
-      cookie.set(TOKEN_KEY, access_token, { secure: true, path: "/" });
-      cookie.set(USER_KEY, user, { secure: true, path: "/" });
-
+      const resp = await login(credentials);
+      cookie.set(DATA_KEY, resp, { secure: true, path: "/" });
       redirect(302, "/");
     } catch (error: any) {
       return fail(error.statusCode, {

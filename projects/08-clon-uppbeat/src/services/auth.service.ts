@@ -19,3 +19,18 @@ export const login = async (credentials: LoginCredentials) => {
   const data = (await response.json()) as LoginResponse;
   return data;
 };
+
+export const verifyToken = async (token: string) => {
+  const response = await fetch(`${API_URL}/auth/verify-token`, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) {
+    const error = (await response.json()) as ErrorResponse;
+    throw error;
+  }
+
+  const data = (await response.json()) as LoginResponse;
+  return data;
+};
