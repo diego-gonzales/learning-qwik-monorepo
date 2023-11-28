@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "src": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+SHAKIRA+__+BZRP+Music+Sessions+%2353+(64+kbps).mp3",
+    "preview": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+SHAKIRA+__+BZRP+Music+Sessions+%2353+(64+kbps)-compressed.mp3",
+    "name": "SHAKIRA BZRP #53",
+    "artist": "Shakira",
+    "cover": "https://cdns-images.dzcdn.net/images/cover/10db12d0096a6f6f9fe9d662a1b238b1/350x350.jpg",
+    "tags": [
+      "beef"
+    ]
+  },
+  {
+    "id": 2,
+    "src": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+QUEVEDO+__+BZRP+Music+Sessions+%2352+(64+kbps).mp3",
+    "preview": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+QUEVEDO+__+BZRP+Music+Sessions+%2352+(64+kbps)-compressed.mp3",
+    "name": "Quevedo",
+    "artist": "Quevedo",
+    "cover": "https://cdns-images.dzcdn.net/images/cover/29a4bcbb19126ecd9c891f2485eeb66d/350x350.jpg",
+    "tags": [
+      "beef"
+    ]
+  },
+  {
+    "id": 3,
+    "src": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+SHAKIRA+__+BZRP+Music+Sessions+%2353+(64+kbps).mp3",
+    "preview": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+SHAKIRA+__+BZRP+Music+Sessions+%2353+(64+kbps)-compressed.mp3",
+    "name": "SHAKIRA BZRP #53",
+    "artist": "Shakira",
+    "cover": "https://cdns-images.dzcdn.net/images/cover/10db12d0096a6f6f9fe9d662a1b238b1/350x350.jpg",
+    "tags": [
+      "beef"
+    ]
+  },
+  {
+    "id": 4,
+    "src": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+QUEVEDO+__+BZRP+Music+Sessions+%2352+(64+kbps).mp3",
+    "preview": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+QUEVEDO+__+BZRP+Music+Sessions+%2352+(64+kbps)-compressed.mp3",
+    "name": "Quevedo",
+    "artist": "Quevedo",
+    "cover": "https://cdns-images.dzcdn.net/images/cover/29a4bcbb19126ecd9c891f2485eeb66d/350x350.jpg",
+    "tags": [
+      "beef"
+    ]
+  },
+  {
+    "id": 5,
+    "src": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+SHAKIRA+__+BZRP+Music+Sessions+%2353+(64+kbps).mp3",
+    "preview": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+SHAKIRA+__+BZRP+Music+Sessions+%2353+(64+kbps)-compressed.mp3",
+    "name": "SHAKIRA BZRP #53",
+    "artist": "Shakira",
+    "cover": "https://cdns-images.dzcdn.net/images/cover/10db12d0096a6f6f9fe9d662a1b238b1/350x350.jpg",
+    "tags": [
+      "beef"
+    ]
+  },
+  {
+    "id": 6,
+    "src": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+QUEVEDO+__+BZRP+Music+Sessions+%2352+(64+kbps).mp3",
+    "preview": "https://mp3musica.s3.amazonaws.com/SnapSave.io+-+QUEVEDO+__+BZRP+Music+Sessions+%2352+(64+kbps)-compressed.mp3",
+    "name": "Quevedo",
+    "artist": "Quevedo",
+    "cover": "https://cdns-images.dzcdn.net/images/cover/29a4bcbb19126ecd9c891f2485eeb66d/350x350.jpg",
+    "tags": [
+      "beef"
+    ]
+  }
+]
