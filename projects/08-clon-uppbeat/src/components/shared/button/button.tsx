@@ -14,7 +14,7 @@ export const Button = component$<ButtonProps>(({ color, label, icon }) => {
         "qwik-button-default": color !== "primary",
       }}
     >
-      {icon && <i class={`uil ${icon}`}></i>}
+      {icon && <i class={`fa-solid ${icon}`}></i>}
       {label}
     </button>
   );

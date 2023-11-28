@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 
-export const Input = component$(() => {
+export const SearchInput = component$(() => {
   return (
     <form class="qwik-input-src">
       <input
@@ -11,7 +11,7 @@ export const Input = component$(() => {
       />
       <div class="flex items-center justify-center">
         <button class="h-6 w-6 rounded-lg bg-slate-800">
-          <i class="uil uil-search text-white"></i>
+          <i class="fa-solid fa-search text-white"></i>
         </button>
       </div>
     </form>

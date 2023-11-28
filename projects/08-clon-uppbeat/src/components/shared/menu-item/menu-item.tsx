@@ -11,7 +11,7 @@ export const MenuItem = component$<MenuItemProps>(({ name, route, icon }) => {
   return (
     <Link class="qwik-sidebar-item-component" href={route}>
       <span>
-        <i class={`uil ${icon}`}></i>
+        <i class={`fa-solid ${icon}`}></i>
       </span>
       <span class="text-sm">{name}</span>
     </Link>
