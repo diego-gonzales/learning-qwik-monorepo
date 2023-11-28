@@ -13,7 +13,7 @@ body {
 
 @layer components {
   .qwik-sidebar-item-component {
-    @apply flex cursor-pointer flex-wrap gap-5 align-middle font-medium opacity-70 duration-75 ease-in;
+    @apply flex cursor-pointer flex-wrap items-center gap-4 rounded-xl px-4 py-2 font-medium opacity-70 duration-75 ease-in hover:bg-gray-100 hover:opacity-100;
   }
 
   .qwik-button-primary {
@@ -34,5 +34,9 @@ body {
 
   .qwik-text-error {
     @apply text-xs text-red-500;
+  }
+
+  .qwik-active-link {
+    @apply bg-gray-100 text-red-600 opacity-100;
   }
 }
