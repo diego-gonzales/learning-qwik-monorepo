@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { type Song } from "~/interfaces/song.interface";
+import { PlayerWave } from "../player-wave/player-wave";
 
 interface PlaylistItemProps {
   song: Song;
@@ -26,15 +27,11 @@ export const PlaylistItem = component$<PlaylistItemProps>(({ song }) => {
           </div>
         </div>
 
-        <div class="flex w-1/4 content-center items-center gap-2">
+        <div class="flex w-1/4 items-center justify-center gap-2 self-center">
           {song.tags.map(() => {
             return (
               <>
-                <span
-                  class={
-                    "h-fit  rounded-2xl bg-white px-2 py-1 text-xs group-hover:bg-gray-100"
-                  }
-                >
+                <span class="h-fit  rounded-2xl bg-white px-2 py-1 text-xs group-hover:bg-gray-100">
                   Chill
                 </span>
               </>
@@ -44,7 +41,7 @@ export const PlaylistItem = component$<PlaylistItemProps>(({ song }) => {
 
         <div class="flex w-1/2 gap-6">
           <div class="flex w-full items-center justify-center">
-            {/* <PlayerWave src={song.src} preview={song.preview} id={id} /> */}
+            <PlayerWave src={song.src} preview={song.preview} id={song.id} />
           </div>
         </div>
       </div>
