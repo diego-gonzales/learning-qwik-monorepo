@@ -9,7 +9,7 @@ interface PlaylistItemProps {
 export const PlaylistItem = component$<PlaylistItemProps>(({ song }) => {
   return (
     <article class="group">
-      <div class="flex cursor-pointer items-center rounded-bl-full rounded-tl-full p-2 transition-all duration-75 ease-out group-hover:bg-white">
+      <div class="flex items-center rounded-bl-full rounded-tl-full p-2 transition-all duration-75 ease-out group-hover:bg-white">
         <div class="flex w-1/5 gap-6">
           <img
             class="h-[60px] w-[60px] rounded-full object-cover"

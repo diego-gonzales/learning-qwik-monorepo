@@ -26,7 +26,7 @@ export const FooterPlayer = component$(() => {
       barRadius: 3,
       cursorWidth: 1,
       cursorColor: "#F472B6",
-      height: 50,
+      height: 40,
       normalize: true,
       fillParent: true,
     });
@@ -34,7 +34,7 @@ export const FooterPlayer = component$(() => {
     store.waveSurferInstance = noSerialize(wavesurfer);
 
     store.waveSurferInstance?.on("ready", () => {
-      store.waveSurferInstance?.setTime(10);
+      // store.waveSurferInstance?.setTime(10);
       store.waveSurferInstance?.play();
       updateIsPlaying(true);
     });
@@ -58,11 +58,17 @@ export const FooterPlayer = component$(() => {
   });
 
   return (
-    <footer class="fixed bottom-0 left-0 z-10 flex h-[64px] w-full justify-between border-t border-solid bg-white">
+    <footer
+      class={[
+        "fixed bottom-0 left-0 z-10 flex h-[64px] w-full justify-between border-t border-solid bg-white",
+        { hidden: !src.value },
+      ]}
+    >
       <section class="flex w-1/6 items-center justify-center ">
         <PlayerButton handlePlay={handlePlay} />
       </section>
-      <section class="flex w-full content-center items-center justify-center ">
+
+      <section class="flex w-full content-center items-center justify-center p-3">
         <div class="w-full" id="global-player"></div>
       </section>
     </footer>

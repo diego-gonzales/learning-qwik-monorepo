@@ -35,7 +35,7 @@ export default component$(() => {
         <div class="min-w-[256px]">
           <Sidebar />
         </div>
-        <div class="grid w-full grid-cols-1 grid-rows-[76px_1fr]">
+        <div class="grid w-full grid-cols-1 grid-rows-[76px_1fr] overflow-y-auto">
           <Header />
           <main class="p-12">
             <Slot />

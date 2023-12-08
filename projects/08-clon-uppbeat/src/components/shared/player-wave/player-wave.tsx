@@ -36,6 +36,7 @@ export const PlayerWave = component$<PlayerWaveProps>(({ src, preview }) => {
       height: 70,
       normalize: true,
       fillParent: true,
+      interact: false,
       url: preview,
     });
 
