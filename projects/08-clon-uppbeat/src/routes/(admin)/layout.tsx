@@ -5,6 +5,7 @@ import { Header } from "~/components/shared/header/header";
 import { Sidebar } from "~/components/shared/sidebar/sidebar";
 import { DATA_KEY, USER_KEY } from "~/constants";
 import { type LoginResponse } from "~/interfaces/login.interface";
+import { PlayerProvider } from "~/providers/player.provider";
 import { verifyToken } from "~/services/auth.service";
 
 export const onRequest: RequestHandler = async ({
@@ -29,7 +30,7 @@ export const onRequest: RequestHandler = async ({
 
 export default component$(() => {
   return (
-    <>
+    <PlayerProvider>
       <div class="flex h-[100vh]">
         <div class="min-w-[256px]">
           <Sidebar />
@@ -43,6 +44,6 @@ export default component$(() => {
       </div>
 
       <FooterPlayer />
-    </>
+    </PlayerProvider>
   );
 });
